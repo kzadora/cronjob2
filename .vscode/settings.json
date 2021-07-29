@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.env.linux": {
+        "CGO_ENABLED": "0"
+    }
+}
