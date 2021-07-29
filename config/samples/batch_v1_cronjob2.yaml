@@ -1,0 +1,7 @@
+apiVersion: batch.tutorial.kubebuilder.io/v1
+kind: CronJob2
+metadata:
+  name: cronjob2-sample
+spec:
+  # Add fields here
+  foo: bar

@@ -1,0 +1,20 @@
+# permissions for end users to view cronjob2s.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cronjob2-viewer-role
+rules:
+- apiGroups:
+  - batch.tutorial.kubebuilder.io
+  resources:
+  - cronjob2s
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - batch.tutorial.kubebuilder.io
+  resources:
+  - cronjob2s/status
+  verbs:
+  - get
