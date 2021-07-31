@@ -33,6 +33,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	batchv1 "tutorial.kubebuilder.io/cronjob2/api/v1"
+	naming "tutorial.kubebuilder.io/cronjob2/naming"
 )
 
 // CronJob2Reconciler reconciles a CronJob2 object
@@ -339,7 +340,7 @@ func (r *CronJob2Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	*/
 	constructJobForCronJob := func(cronJob *batchv1.CronJob2, scheduledTime time.Time) (*kbatch.Job, error) {
 		// We want job names for a given nominal start time to have a deterministic name to avoid the same job being created twice
-		name := fmt.Sprintf("%s-%d", cronJob.Name, scheduledTime.Unix())
+		name := naming.CreateJobName(cronJob.Name, scheduledTime)
 
 		job := &kbatch.Job{
 			ObjectMeta: metav1.ObjectMeta{
