@@ -86,7 +86,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if os.Getenv("ENABLE_WEBHOOKS") != "false" {
+	if enableWebhooks := os.Getenv("ENABLE_WEBHOOKS"); enableWebhooks != "false" && enableWebhooks != "0" {
 		if err = (&batchv1.CronJob2{}).SetupWebhookWithManager(mgr); err != nil {
 			setupLog.Error(err, "unable to create webhook", "webhook", "CronJob2")
 			os.Exit(1)
